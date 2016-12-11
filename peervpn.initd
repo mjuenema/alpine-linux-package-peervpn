@@ -7,7 +7,8 @@ command="/usr/sbin/$name"
 command_args="/etc/conf.d/$name"
 command_background="yes"
 
-start_stop_daemon_args=""
+# peervpn does not daemonize itself.
+start_stop_daemon_args="--background pidfile=/run/peervpn.pid --make-pidfile --remove-pidfile"
 pidfile="/run/$name.pid"
 
 depend() {
