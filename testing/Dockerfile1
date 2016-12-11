@@ -1,0 +1,9 @@
+#
+# Dockerfile for testing alpine-linux-package-peervpn (node 1)
+#
+
+FROM alpine:edge
+
+MAINTAINER Markus Juenemann <markus@juenemann.net>
+
+COPY 
