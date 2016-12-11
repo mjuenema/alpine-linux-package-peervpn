@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+
+# Sample init.d file for alpine linux.
+
+name=peervpn
+command="/usr/sbin/$name"
+command_args="/etc/conf.d/$name"
+command_background="yes"
+
+start_stop_daemon_args=""
+pidfile="/run/$name.pid"
+
+depend() {
+	need net
+	after firewall
+}
