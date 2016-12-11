@@ -14,7 +14,6 @@ subpackages=""
 source="
         $url/files/$pkgname-0-044.tar.gz
 	peervpn.initd
-	peervpn.confd
 	"
 
 # peervpn has a strange versioning scheme.
@@ -24,7 +23,6 @@ build() {
 
 	# Must copy these into fakeroot?
 	install -m 755 $pkgname.initd "$builddir"/$pkgname.initd
-	install -m 755 $pkgname.confd "$builddir"/$pkgname.confd
 
 	cd "$builddir"
 	make
@@ -41,9 +39,6 @@ package() {
 
 	install -Dm755 $pkgname.initd "$pkgdir"/etc/init.d/$pkgname \
 		|| return 1
-
-	#install -Dm644 $pkgname.confd "$pkgdir"/etc/conf.d/$pkgname \
-	#	|| return 1
 }
 
 md5sums="3acb4cbf083c0bdacc90ad7d2403b1bc  peervpn-0-044.tar.gz
