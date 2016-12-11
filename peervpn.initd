@@ -4,11 +4,11 @@
 
 name=peervpn
 command="/usr/sbin/$name"
-command_args="/etc/conf.d/$name"
+command_args="/etc/$name.conf"
 command_background="yes"
 
 # peervpn does not daemonize itself.
-start_stop_daemon_args="--background pidfile=/run/peervpn.pid --make-pidfile --remove-pidfile"
+start_stop_daemon_args="--stdout=/var/log/$name.log --stderr=/var/log/$name.log"
 pidfile="/run/$name.pid"
 
 depend() {
