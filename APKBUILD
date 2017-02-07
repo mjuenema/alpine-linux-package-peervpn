@@ -12,17 +12,14 @@ makedepends="$depends libressl-dev zlib-dev linux-headers"
 install=""
 subpackages=""
 source="
-        $url/files/$pkgname-0-044.tar.gz
+        http://${pkgname}.net/files/${pkgname}-${pkgver//./-}.tar.gz
 	peervpn.initd
 	"
 
 # peervpn has a strange versioning scheme.
-builddir="$srcdir/$pkgname-0-044"
+builddir="$srcdir/$pkgname-${pkgver//./-}"
 
 build() {
-
-	# Must copy these into fakeroot?
-	install -m 755 $pkgname.initd "$builddir"/$pkgname.initd
 
 	cd "$builddir"
 	make
@@ -37,7 +34,7 @@ package() {
 	install -Dm600 $pkgname.conf "$pkgdir"/etc/$pkgname.conf \
 		|| return 1
 
-	install -Dm755 $pkgname.initd "$pkgdir"/etc/init.d/$pkgname \
+	install -Dm755 ${srcdir}/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname \
 		|| return 1
 }
 
